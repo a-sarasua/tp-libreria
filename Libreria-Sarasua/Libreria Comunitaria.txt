@@ -1,0 +1,109 @@
+Trabajo Práctico: Librería comunitaria
+Alumno(?): Sarasúa, Agustín
+Fecha de entrega: 27/05
+Vencimiento: 28/05
+
+Contexto:
+	-Ubiquémonos dentro de una librería comunitaria, la cual tiene libros que fueron donados y se ocupa de redistribuirlo entre hambrientos lectores que, después de leerlos, deben devolverlos para lograr que la rueda funcione
+	-Actualmente la librería se maneja con un cuaderno en donde se anotan los distintos libros que van ingresando y egresando, de modo que el trabajo es cada vez más propenso a errores
+	-Por cada libro se anota:
+		-Título
+		-Autor
+		-Año de lanzamiento
+		-Editorial
+		-ISBN (International Standard Book Number)
+	-Los libros se exhiben en una planilla y los lectores pueden alquilarlos, siempre indicando su ISBN (el código que los identifica)
+	-El objetivo es un programa que le permita a los administradores de la librería comunitaria saber si un libro en particular está disponible o no. (es decir, si puede alquilarse o ya fue alquilado previamente y estamos a la espera de su devolución)
+	-Por otra parte, es frecuente encontrarse con fanáticos de un autor literario. La precisión de las recomendaciones de los administradores no es del todo buena debido a la cantidad de libros que tienen, por lo que muchas veces los lectores no pueden dar con los libtro que buscan de su autor preferido.
+		-Para ayudarlos, hay que hacer una herramienta en la que puedan buscar qué libros están disponibles sobre un autor determinado.
+	-Si bien la librería funciona con donaciones del libros, en los últimos años han brotado ciertos contactos con editoriales y distribuidoras de libros que hacen posible el encargo de libros particulares. 
+		-Podemos saber cuáles son los 10 libros que más se piden para decirles a los administradores que encarguen más stock de los mismos.
+
+Hay 3 objetivos:
+	-Saber si un libro está disponible o no para alquilar.
+	-Hacer un buscador de libros disponibles según nombre de autor.
+	-Ordenar los 10 libros más pedidos.
+
+Guardado de datos: tendremos todos los datos guardados en un objeto, el cual tendrá:
+	-Título
+	-Autor
+	-Año de lanzamiento
+	-Editorial
+	-ISBN
+	-Disponible: esta será una variable booleana la cual cambiará según esté disponible o no el libro
+	-Cantidad de veces que fue pedido
+	-Fecha devolución: si fue prestado, hay que poner su fecha de vencimiento
+
+Funciones:
+
+	-Determinar si el libro está disponible:
+
+		-Paso 1 (Sin nociones de programación):
+			va a recibir el ISBN y el título
+			verá la lista de libros
+				si coincide en título y en ISBN 
+					va a ver si está disponible
+						si está disponible, avisará que sí está. 
+						en caso de que no, avisará que fue prestado y dirá cuando será devuelto
+
+		-Paso 2 (Con nociones de programación):
+		definimos variable chequeo
+		recorre el objeto libros (for)
+			si libro.título incluye tituloIngresado y lo mismo con su ISBN (if)
+				revisa si está disponible (if), si disponible es true:
+					devolverá que "si está"
+				si no está disponible:
+					devolverá que "no está" junto a cuando será devuelto
+			devuelve que "no se encontró el libro"
+
+	-Buscar libros según autor
+
+		-Paso 1:
+			va a recibir un string con el nombre del autor
+			creará un lista para poner los libros disponibles por autor
+			verá la lista de libros
+				si coincide el nombre
+					va a ver si está disponible
+						si está disponible, se suma la lista de libros disponibles por autor
+			devolverá la lista de libros disponibles por autor
+
+		-Paso 2:
+			definimos el array librosPorAutor
+			recorre el objeto libros (for)
+				si libro.autor incluye autorIngresado (if)
+					ve si disponible es true (if). Si es así:
+						agrega libro.título a librosPorAutor
+			devuelve librosPorAutor
+
+	-Ordenar los 10 libros más pedidos
+
+		-Paso 1:
+			va a recibir la lista de libros
+			creará una lista para poner los libros más pedidos
+			lo mismo pero para la cantidad de veces que fue pedido cada libro
+			va a revisar la lista de libros
+				va a agregar, a la lista de "cantidad de veces pedido", las cantidades identificadas por nombre
+			agregará a la lista de los más pedidos a la lista "cantidad de veces pedido" pero ordenados de mayor a menor
+			seleccionará sólo los 10 primeros de la lista de libros más pedidos
+			devolverá la lista de libros más pedidos
+			
+		-Paso 2:
+			definimos el array librosMasPedidos
+			idem anterior pero se llamará cantidadPedidos
+			recorre el objeto libros (for)
+				al array cantidadPedidos le agregamos (de cada libro) mediante un push:
+					el número de la cantidad de veces que se pidió: libros.cantidadVecesPedidos
+					el nombre del libro: libros.título
+			ordenará el array cantidadPedidos (con sort):
+				-será de menor a mayor, o sea, b - a-
+			ese array ordenado será librosMasPedidos
+			seleccionará los primeros 1o de librosMasPedidos (con un slice)
+			devolverá librosMasPedidos
+
+
+
+
+
+
+
+

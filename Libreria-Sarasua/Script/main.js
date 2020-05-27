@@ -1,5 +1,5 @@
 
-function chequearDisponibilidad(tituloIngresado, isbnIngresado) {
+function chequearDisponibilidad(isbnIngresado) {
 	for(i = 0; i < libros.length; i++) {
 		const libro = libros[i]
 		const titulo = libro.titulo
@@ -7,17 +7,17 @@ function chequearDisponibilidad(tituloIngresado, isbnIngresado) {
 		const autor = libro.autor
 		const fechaDevolucion = libro.fechaDevolucion
 		const disponible = libro.disponible
-		if(titulo === tituloIngresado && isbn === isbnIngresado) {
+		if(isbn === isbnIngresado) {
 			if (disponible == true) {
-				return '"' + tituloIngresado + '" ' + "de " + autor + ' esta disponible'
+				return '"' + libro.titulo + '" ' + "de " + autor + ' esta disponible'
 			}
-			return '"' + tituloIngresado + '" ' + "de " + autor + ' fue prestado, va a ser devuelto el ' + fechaDevolucion
+			return '"' + libro.titulo + '" ' + "de " + autor + ' fue prestado, va a ser devuelto el ' + fechaDevolucion
 		}
 	} 	
 	return 'No se ha encontrado el libro'
 }
 
-console.log(chequearDisponibilidad('Antes Del Fin', '1150207064720'))
+console.log(chequearDisponibilidad('1150207064720'))
 
 function buscarPorAutor(autorIngresado) {
 	const librosPorAutor = []

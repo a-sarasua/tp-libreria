@@ -39,9 +39,9 @@ Funciones:
 	-Determinar si el libro está disponible:
 
 		-Paso 1 (Sin nociones de programación):
-			va a recibir el ISBN y el título
+			va a recibir el ISBN
 			verá la lista de libros
-				si coincide en título y en ISBN 
+				si coincide en ISBN 
 					va a ver si está disponible
 						si está disponible, avisará que sí está. 
 						en caso de que no, avisará que fue prestado y dirá cuando será devuelto
@@ -49,7 +49,7 @@ Funciones:
 		-Paso 2 (Con nociones de programación):
 		definimos variable chequeo
 		recorre el objeto libros (for)
-			si libro.título incluye tituloIngresado y lo mismo con su ISBN (if)
+			si libro.isbn es igual al ISBN ingresado (if)
 				revisa si está disponible (if), si disponible es true:
 					devolverá que "si está"
 				si no está disponible:

@@ -8,7 +8,7 @@ function chequearDisponibilidad(isbnIngresado) {
 		const fechaDevolucion = libro.fechaDevolucion
 		const disponible = libro.disponible
 		if(isbn === isbnIngresado) {
-			if (disponible == true) {
+			if (disponible) {
 				return '"' + libro.titulo + '" ' + "de " + autor + ' esta disponible'
 			}
 			return '"' + libro.titulo + '" ' + "de " + autor + ' fue prestado, va a ser devuelto el ' + fechaDevolucion
@@ -27,16 +27,14 @@ function buscarPorAutor(autorIngresado) {
 		const autor = libro.autor
 		const isbn = libro.isbn
 		const disponible = libro.disponible
-		if(autor === autorIngresado) {
-			if (disponible == true) {
-				librosPorAutor.push({
-					titulo: titulo,
-					isbn: isbn,
-				})
-			}
+		if(autor === autorIngresado && disponible) {
+			librosPorAutor.push({
+				titulo: titulo,
+				isbn: isbn,
+			})
 		}
 	}
-	if (librosPorAutor == '') {
+	if (librosPorAutor.length === 0) {
 		return 'No se encontraron libros de ese autor'
 	} else {
 		return librosPorAutor
@@ -46,19 +44,11 @@ function buscarPorAutor(autorIngresado) {
 console.log(buscarPorAutor('Jorge Luis Borges'))
 
 function buscarMasPedidos(libros) {
-	let librosMasPedidos = []
-	let cantidadPedidos = []
-	for(i = 0; i < libros.length; i++) {
-		const libro = libros[i]
-		const titulo = libro.titulo
-		const cantidadPedido = libro.cantidadVecesPedido		
-		cantidadPedidos.push({
-			titulo: titulo,
-			vecesPedido: cantidadPedido, 
-		})
+	function compararLibros (a,b) {
+		return (b.cantidadVecesPedido - a.cantidadVecesPedido)
 	}
-	librosMasPedidos = cantidadPedidos.sort(function (a, b) {return (b.vecesPedido - a.vecesPedido)})
-	librosMasPedidos = cantidadPedidos.slice(0, 10)
+	const librosMasPedidos = libros.sort(compararLibros)
+	librosMasPedidos.splice(10)
 	return librosMasPedidos
 }
 

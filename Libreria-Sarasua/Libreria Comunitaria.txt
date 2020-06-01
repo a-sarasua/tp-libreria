@@ -81,23 +81,17 @@ Funciones:
 			va a recibir la lista de libros
 			creará una lista para poner los libros más pedidos
 			lo mismo pero para la cantidad de veces que fue pedido cada libro
-			va a revisar la lista de libros
-				va a agregar, a la lista de "cantidad de veces pedido", las cantidades identificadas por nombre
-			agregará a la lista de los más pedidos a la lista "cantidad de veces pedido" pero ordenados de mayor a menor
+			ordenará de mayor a menor la lista de libros
 			seleccionará sólo los 10 primeros de la lista de libros más pedidos
 			devolverá la lista de libros más pedidos
 			
 		-Paso 2:
 			definimos el array librosMasPedidos
 			idem anterior pero se llamará cantidadPedidos
-			recorre el objeto libros (for)
-				al array cantidadPedidos le agregamos (de cada libro) mediante un push:
-					el número de la cantidad de veces que se pidió: libros.cantidadVecesPedidos
-					el nombre del libro: libros.título
 			ordenará el array cantidadPedidos (con sort):
 				-será de menor a mayor, o sea, b - a-
 			ese array ordenado será librosMasPedidos
-			seleccionará los primeros 1o de librosMasPedidos (con un slice)
+			seleccionará los primeros 10 de librosMasPedidos (con un splice)
 			devolverá librosMasPedidos
 
 
